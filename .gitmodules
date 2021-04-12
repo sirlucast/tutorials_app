@@ -1,0 +1,6 @@
+[submodule "nodejs-express-sequelize-mysql"]
+	path = nodejs-express-sequelize-mysql
+	url = git@github.com:sirlucast/nodejs-express-sequelize-mysql.git
+[submodule "vue-js-crud-example"]
+	path = vue-js-crud-example
+	url = git@github.com:sirlucast/vue-js-crud-example.git

@@ -1,4 +1,29 @@
-# Vue.js CRUD App with Vue Router & Axios
+# Dockerize Vue.js + NodeJs
+
+## How to run with docker-compose
+
+### Fetch project and sub projects.
+
+First of all read [Git tools - submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+You must run:
+
+    git submodule update --init --recursive
+
+to initialize your local configuration file and fetch all the data from the sub projects.
+
+## Environment variables
+
+Next, copy .env.example into .env file inside backend project and set the environment variables:
+
+    cp nodejs-express-sequelize-mysql/.env.example nodejs-express-sequelize-mysql/.env
+
+## Run project
+
+To run project use:
+
+    docker-compose up --build -detach
+
+## Documentation base projects
 
 For instruction, please visit:
 > [Vue.js CRUD App with Vue Router & Axios](https://bezkoder.com/vue-js-crud-app/)

@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+
+    mariadb:
+        image: mariadb:latest
+        container_name: mariadb_10
+        networks: 
+            - nodered
+        env_file:
+            - ./nodejs-express-sequelize-mysql/.env
+        # environment:
+        #   - MYSQL_DATABASE=mi_db
+        #   - MYSQL_ROOT_PASSWORD=secret
+        volumes:
+            - nodevol:/var/lib/mysql
+        # ports:
+        #   - 3306:3306
+
+    nodeapp:
+    # se define donde esta el dockerfile
+        build:
+            context: nodejs-express-sequelize-mysql/
+            target: prod 
+        image: nodeapp
+        container_name: node_app
+        restart: always
+        volumes:
+            - ./nodejs-express-sequelize-mysql/:/usr/src/app
+            - node_modules_tutorials_app:/usr/src/app/node_modules
+        # ports:
+        #     - 8080:8080
+        networks: 
+            - nodered
+        depends_on:
+            - mariadb
+
+    vueapp:
+        build:
+            context: vue-js-crud-example
+        image: vueapp
+        container_name: vueapp
+        restart: always
+        ports: 
+            - 80:80
+        networks:
+            - nodered
+        depends_on:
+            - mariadb
+            - nodeapp
+
+
+
+
+networks:
+  nodered:
+
+volumes:
+  nodevol:
+  node_modules_tutorials_app:
